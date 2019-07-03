@@ -34,7 +34,8 @@
     "lodash.pickby": "^4.6.0",
     "object.assign": "^4.0.4",
     "traceur": "latest",
-    "typescript": "latest"
+    "typescript": "latest",
+    "snyk": "^1.189.0"
   },
   "scripts": {
     "lint": "jshint .",
@@ -42,9 +43,12 @@
     "pretest": "npm run lint",
     "build:compilers": "node build.js compilers",
     "git:clean": "if type git > /dev/null 2>&1; then git stash save --keep-index; fi",
-    "test:no_change": "npm run --silent git:clean && if npm run --silent build | grep 'Write to file'; then echo 'Please run `npm run build` and commit the changes.' && exit 1; fi"
+    "test:no_change": "npm run --silent git:clean && if npm run --silent build | grep 'Write to file'; then echo 'Please run `npm run build` and commit the changes.' && exit 1; fi",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "config": {
     "unsafe-perm": true
-  }
+  },
+  "snyk": true
 }
